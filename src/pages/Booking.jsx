@@ -114,7 +114,11 @@ function Booking() {
     }
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/appointments", formData);
+      // ✅ FIXED: Railway backend URL (localhost:5000 se replace kiya)
+      await axios.post(
+        "https://medibook-production-f211.up.railway.app/api/appointments",
+        formData,
+      );
       setLoading(false);
       setBooked(true);
     } catch (error) {
@@ -150,7 +154,6 @@ function Booking() {
         overflow: "hidden",
       }}
     >
-      {/* Particles */}
       {particles.map((p) => (
         <div
           key={p.id}
@@ -169,15 +172,11 @@ function Booking() {
         />
       ))}
 
-      {/* Grid */}
       <div
         style={{
           position: "fixed",
           inset: 0,
-          backgroundImage: `
-          linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px)
-        `,
+          backgroundImage: `linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
           zIndex: 0,
         }}
@@ -191,7 +190,6 @@ function Booking() {
           margin: "0 auto",
         }}
       >
-        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
           <h1
             style={{
@@ -210,7 +208,6 @@ function Booking() {
           </p>
         </div>
 
-        {/* Progress Steps */}
         {!booked && (
           <div
             style={{
@@ -283,7 +280,7 @@ function Booking() {
           </div>
         )}
 
-        {/* STEP 1 — Choose Doctor */}
+        {/* STEP 1 */}
         {!booked && step === 1 && (
           <div>
             <h2
@@ -373,7 +370,7 @@ function Booking() {
           </div>
         )}
 
-        {/* STEP 2 — Pick Date & Time */}
+        {/* STEP 2 */}
         {!booked && step === 2 && (
           <div
             style={{
@@ -384,7 +381,6 @@ function Booking() {
               backdropFilter: "blur(10px)",
             }}
           >
-            {/* Selected Doctor */}
             <div
               style={{
                 display: "flex",
@@ -425,7 +421,6 @@ function Booking() {
               </button>
             </div>
 
-            {/* Date */}
             <label
               style={{
                 color: "rgba(255,255,255,0.5)",
@@ -445,7 +440,6 @@ function Booking() {
               style={{ ...inputStyle, marginBottom: "25px" }}
             />
 
-            {/* Time Slots */}
             <label
               style={{
                 color: "rgba(255,255,255,0.5)",
@@ -526,7 +520,7 @@ function Booking() {
           </div>
         )}
 
-        {/* STEP 3 — Patient Details */}
+        {/* STEP 3 */}
         {!booked && step === 3 && (
           <div
             style={{
@@ -581,7 +575,6 @@ function Booking() {
               style={{ ...inputStyle, resize: "none" }}
             />
 
-            {/* Summary */}
             <div
               style={{
                 background: "rgba(0,200,255,0.05)",
@@ -688,7 +681,7 @@ function Booking() {
           </div>
         )}
 
-        {/* SUCCESS SCREEN */}
+        {/* SUCCESS */}
         {booked && (
           <div
             style={{
@@ -735,7 +728,6 @@ function Booking() {
               <strong style={{ color: "#00c8ff" }}>{formData.date}</strong> at{" "}
               <strong style={{ color: "#00c8ff" }}>{formData.time}</strong>
             </p>
-
             <div
               style={{
                 background: "rgba(0,255,136,0.05)",
@@ -753,7 +745,6 @@ function Booking() {
                 {formData.patientEmail}
               </div>
             </div>
-
             <div
               style={{
                 display: "flex",
@@ -809,7 +800,6 @@ function Booking() {
           </div>
         )}
 
-        {/* Back to Home */}
         {!booked && (
           <div style={{ textAlign: "center", marginTop: "25px" }}>
             <button
@@ -831,14 +821,8 @@ function Booking() {
       </div>
 
       <style>{`
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          100% { transform: translateY(-20px); }
-        }
-        @keyframes bounce {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.1); }
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-20px); } }
+        @keyframes bounce { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         input::placeholder { color: rgba(255,255,255,0.3); }
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       `}</style>
@@ -847,3 +831,4 @@ function Booking() {
 }
 
 export default Booking;
+g;
